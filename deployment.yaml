@@ -17,4 +17,4 @@ spec:
       - name: portfolio
         image: praveendevops95/portfolio:v1
         ports:
-        - containerPort: 8080
+        - containerPort: 80
