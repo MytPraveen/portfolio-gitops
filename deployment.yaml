@@ -18,3 +18,7 @@ spec:
         image: praveendevops95/portfolio:v1
         ports:
         - containerPort: 80
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
