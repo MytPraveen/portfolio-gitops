@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
       - name: portfolio
-        image: praveendevops95/portfolio:v1
+        image: praveendevops95/portfolio:v5
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
         resources:
