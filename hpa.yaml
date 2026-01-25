@@ -4,12 +4,12 @@ metadata:
   name: portfolio-hpa
   namespace: portfolio
 spec:
+  minReplicas: 1
+  maxReplicas: 5
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
     name: portfolio
-  minReplicas: 1
-  maxReplicas: 5
   metrics:
   - type: Resource
     resource:
@@ -17,3 +17,12 @@ spec:
       target:
         type: Utilization
         averageUtilization: 60
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 0
+      policies:
+      - type: Percent
+        value: 100
+        periodSeconds: 30
+    scaleDown:
+      stabilizationWindowSeconds: 300
