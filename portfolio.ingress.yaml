@@ -3,10 +3,8 @@ kind: Ingress
 metadata:
   name: portfolio-ingress
   namespace: portfolio
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-  ingressClassName: nginx
+  ingressClassName: traefik
   rules:
   - host: portfolio.praveen.cfd
     http:
