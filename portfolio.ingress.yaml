@@ -3,12 +3,18 @@ kind: Ingress
 metadata:
   name: portfolio-ingress
   namespace: portfolio
+  annotations:
+    # Strip /api prefix before sending to backend
+    traefik.ingress.kubernetes.io/router.middlewares: portfolio-strip-api-prefix@kubernetescrd
+    # Enable SSL (once you have certificates)
+    traefik.ingress.kubernetes.io/router.tls: "true"
 spec:
   ingressClassName: traefik
   rules:
   - host: praveeninfra.online
     http:
       paths:
+      # API requests go to backend
       - path: /api
         pathType: Prefix
         backend:
@@ -16,6 +22,7 @@ spec:
             name: portfolio-backend-service
             port:
               number: 8000
+      # Everything else goes to frontend
       - path: /
         pathType: Prefix
         backend:
