@@ -18,7 +18,7 @@ spec:
             name: portfolio-backend-service
             port:
               number: 8000
-      - path: /
+      - path: /api.praveeninfra.online
         pathType: Prefix
         backend:
           service:
