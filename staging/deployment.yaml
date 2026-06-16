@@ -17,7 +17,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
       - name: portfolio
-        image: praveendevops95/devops-portfolio:v46-5090ae512105cdba50d45a6a34efea34ae6ba19b
+        image: praveendevops95/devops-portfolio:v47-9aa1482a78cf0eb7300e5a93c119cbffe5587942
         ports:
         - containerPort: 80
         resources:
