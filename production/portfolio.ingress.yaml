@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: portfolio-ingress
-  namespace: portfolio
+  namespace: portfolio-production
   annotations:
     argocd.argoproj.io/tracking-id: portfolio:networking.k8s.io/Ingress:portfolio/portfolio-ingress
 spec:
