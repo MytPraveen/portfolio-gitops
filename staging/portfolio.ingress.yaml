@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-  - host: praveeninfra.online
+  - host: staging.praveeninfra.online
     http:
       paths:
       - path: /api
