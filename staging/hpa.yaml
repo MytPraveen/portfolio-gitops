@@ -2,7 +2,7 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: portfolio-hpa
-  namespace: portfolio
+  namespace: portfolio-staging
 spec:
   minReplicas: 1
   maxReplicas: 5
