@@ -1,5 +1,5 @@
 resources:
-  - deployment.yaml
-  - service.yaml
-  - pvc.yaml
   - sealedsecret.yaml
+  - pvc.yaml
+  - service.yaml
+  - statefulset.yaml
