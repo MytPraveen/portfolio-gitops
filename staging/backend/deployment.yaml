@@ -22,22 +22,22 @@ spec:
         - containerPort: 8000
         env:
         - name: DB_HOST
-          value: "portfolio-db-postgresql"          # existing postgres svc
+          value: "portfolio-service"          # existing postgres svc
         - name: DB_NAME
           valueFrom:
             secretKeyRef:
-              name: portfolio-db-secret
-              key: db-name
+              name: portfolio-secret
+              key: POSTGRES_DB
         - name: DB_USER
           valueFrom:
             secretKeyRef:
-              name: portfolio-db-secret
-              key: db-user
+              name: portfolio-secret
+              key: POSTGRES_USER
         - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: portfolio-db-secret
-              key: db-password
+              name: portfolio-secret
+              key: POSTGRES_PASSWORD
         - name: UPLOAD_DIR
           value: "/uploads"
         volumeMounts:
