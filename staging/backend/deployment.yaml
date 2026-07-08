@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: portfolio-backend
-  namespace: portfolio
+  namespace: portfolio-staging
 spec:
   replicas: 1
   revisionHistoryLimit: 2
