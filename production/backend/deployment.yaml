@@ -36,7 +36,7 @@ spec:
         - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: postgrres-secret
+              name: postgres-secret
               key: POSTGRES_PASSWORD
         - name: UPLOAD_DIR
           value: "/uploads"
