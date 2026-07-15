@@ -4,7 +4,7 @@ metadata:
   name: portfolio-backend-ingress
   namespace: portfolio-production
 spec:
-  ingressClassName: traefik
+  ingressClassName: cilium
   rules:
   - host: api.praveeninfra.online
     http:
