@@ -1,5 +1,4 @@
 resources:
-  - sealedsecret.yaml
   - pvc.yaml
   - service.yaml
   - statefulset.yaml
