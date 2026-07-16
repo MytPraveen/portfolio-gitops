@@ -17,7 +17,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
       - name: portfolio-backend
-        image: praveendevops95/portfolio-backend:latest
+        image: praveendevops95/portfolio-backend:v3
         ports:
         - containerPort: 8000
         env:
