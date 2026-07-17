@@ -14,15 +14,22 @@ spec:
       labels:
         app: portfolio-backend
     spec:
+      imagePullSecrets:
+        - name: nexus-secret
+
       terminationGracePeriodSeconds: 30
+
       containers:
       - name: portfolio-backend
-        image: praveendevops95/portfolio-backend:latest
+        image: registry.praveeninfra.online/docker-private/portfolio-backend:v7
+        imagePullPolicy: Always
+
         ports:
         - containerPort: 8000
+
         env:
         - name: DB_HOST
-          value: "postgres-service"          # existing postgres svc
+          value: "postgres-service"
         - name: DB_NAME
           valueFrom:
             secretKeyRef:
@@ -40,9 +47,11 @@ spec:
               key: POSTGRES_PASSWORD
         - name: UPLOAD_DIR
           value: "/uploads"
+
         volumeMounts:
         - name: uploads
           mountPath: /uploads
+
         resources:
           requests:
             cpu: 100m
@@ -50,22 +59,26 @@ spec:
           limits:
             cpu: 500m
             memory: 512Mi
+
         readinessProbe:
           httpGet:
             path: /health
             port: 8000
           initialDelaySeconds: 10
           periodSeconds: 5
+
         livenessProbe:
           httpGet:
             path: /health
             port: 8000
           initialDelaySeconds: 20
           periodSeconds: 15
+
         lifecycle:
           preStop:
             exec:
               command: ["sh", "-c", "sleep 5"]
+
       volumes:
       - name: uploads
         persistentVolumeClaim:
