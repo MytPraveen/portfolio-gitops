@@ -25,7 +25,7 @@ spec:
 
       containers:
         - name: portfolio
-          image: registry.praveeninfra.online/docker-private/devops-portfolio:v29
+          image: registry.praveeninfra.online/docker-private/devops-portfolio:v31
           imagePullPolicy: Always
 
           ports:
