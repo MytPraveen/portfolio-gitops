@@ -17,7 +17,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
       - name: portfolio-backend
-        image: praveendevops95/portfolio-backend:v3
+        image: registry.praveeninfra.online/docker-private/portfolio-backend:v6
         ports:
         - containerPort: 8000
         env:
