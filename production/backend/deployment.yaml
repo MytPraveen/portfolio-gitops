@@ -13,6 +13,16 @@ spec:
     metadata:
       labels:
         app: portfolio-backend
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/role: "portfolio-backend"
+        vault.hashicorp.com/agent-extra-secret: "vault-ca"
+        vault.hashicorp.com/ca-cert: "/vault/custom/ca.crt"
+        vault.hashicorp.com/agent-inject-secret-db.json: "database/creds/portfolio-role"
+        vault.hashicorp.com/agent-inject-template-db.json: |
+          {{- with secret "database/creds/portfolio-role" -}}
+          {"username":{{ .Data.username | toJSON }},"password":{{ .Data.password | toJSON }}}
+          {{- end }}
     spec:
       # ADD THIS LINE
       serviceAccountName: portfolio-backend-sa
@@ -24,7 +34,7 @@ spec:
 
       containers:
       - name: portfolio-backend
-        image: registry.praveeninfra.online/docker-private/portfolio-backend:v7
+        image: registry.praveeninfra.online/docker-private/portfolio-backend:v8
         ports:
         - containerPort: 8000
 
