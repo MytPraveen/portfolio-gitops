@@ -14,6 +14,9 @@ spec:
       labels:
         app: portfolio-backend
     spec:
+      # ADD THIS LINE
+      serviceAccountName: portfolio-backend-sa
+
       imagePullSecrets:
         - name: nexus-secret
 
