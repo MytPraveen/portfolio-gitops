@@ -1,18 +1,14 @@
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: portfolio-backend
   namespace: portfolio-production
-
 spec:
   replicas: 3
   revisionHistoryLimit: 2
-
   selector:
     matchLabels:
       app: portfolio-backend
-
   template:
     metadata:
       labels:
@@ -27,68 +23,48 @@ spec:
           {{- with secret "database/creds/portfolio-role" -}}
           {"username":{{ .Data.username | toJSON }},"password":{{ .Data.password | toJSON }}}
           {{- end }}
-
     spec:
       serviceAccountName: portfolio-backend-sa
-
       imagePullSecrets:
         - name: nexus-secret
-
       terminationGracePeriodSeconds: 30
-
       containers:
-<<<<<<< HEAD
-      - name: portfolio-backend
-        image: registry.praveeninfra.online/docker-private/portfolio-backend:build-6
-        ports:
-        - containerPort: 8000
-
-
+        - name: portfolio-backend
+          image: registry.praveeninfra.online/docker-private/portfolio-backend:build-6
           ports:
             - containerPort: 8000
-
           env:
             - name: DB_HOST
               value: "postgres-service"
-
             - name: DB_NAME
               valueFrom:
                 secretKeyRef:
                   name: postgres-secret
                   key: POSTGRES_DB
-
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
                   name: postgres-secret
                   key: POSTGRES_USER
-
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: postgres-secret
                   key: POSTGRES_PASSWORD
-
             - name: UPLOAD_DIR
               value: "/uploads"
-
-            # Redis configuration
             - name: REDIS_HOST
               value: "my-redis-master.redis.svc.cluster.local"
-
             - name: REDIS_PORT
               value: "6379"
-
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: portfolio-redis-secret
                   key: redis-password
-
           volumeMounts:
             - name: uploads
               mountPath: /uploads
-
           resources:
             requests:
               cpu: 100m
@@ -96,26 +72,22 @@ spec:
             limits:
               cpu: 500m
               memory: 512Mi
-
           readinessProbe:
             httpGet:
               path: /health
               port: 8000
             initialDelaySeconds: 10
             periodSeconds: 5
-
           livenessProbe:
             httpGet:
               path: /health
               port: 8000
             initialDelaySeconds: 20
             periodSeconds: 15
-
           lifecycle:
             preStop:
               exec:
                 command: ["sh", "-c", "sleep 5"]
-
       volumes:
         - name: uploads
           persistentVolumeClaim:
